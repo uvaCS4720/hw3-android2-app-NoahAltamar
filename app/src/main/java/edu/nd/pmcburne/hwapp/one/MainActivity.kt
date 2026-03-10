@@ -18,6 +18,9 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.text.font.FontWeight
 import edu.nd.pmcburne.hwapp.one.ui.DatePickerBar
 import edu.nd.pmcburne.hwapp.one.ui.GameCard
 import edu.nd.pmcburne.hwapp.one.ui.GenderToggle
@@ -46,7 +49,17 @@ fun BasketballApp(viewModel: GameViewModel = viewModel()) {
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("NCAA Basketball") })
+            TopAppBar(
+                title = {
+                    Text(
+                        text = "🏀 NCAA Basketball 🏀",
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            )
         }
     ) { innerPadding ->
         Column(modifier = Modifier
@@ -60,7 +73,8 @@ fun BasketballApp(viewModel: GameViewModel = viewModel()) {
 
             DatePickerBar(
                 selectedDate = selectedDate,
-                onDateSelected = { viewModel.onDateSelected(it) }
+                onDateSelected = { viewModel.onDateSelected(it) },
+                modifier = Modifier.fillMaxWidth()
             )
 
             if (isLoading) {
